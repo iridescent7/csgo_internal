@@ -1,0 +1,4 @@
+* text=auto
+
+*.h     filter=tabspace
+*.cpp   filter=tabspace

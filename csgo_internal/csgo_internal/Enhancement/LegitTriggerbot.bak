@@ -1,0 +1,103 @@
+#include "LegitTriggerbot.h"
+#include "../Globals.h"
+
+void CLegitTriggerbot::CreateMove(CUserCmd *cmd, bool *send_packet)
+{
+	if (!Enabled || !I::Engine->IsInGame())
+		return;
+
+	if (GetAsyncKeyState(key))
+	{
+
+		auto localplayer = I::EntityList->GetClientEntity(I::Engine->GetLocalPlayer());
+
+		if (!localplayer)
+			return;
+
+		if (localplayer->m_flNextAttack() > I::Globals->curtime)
+			return;
+
+		auto lpWeapon = (CBaseCombatWeapon*)I::EntityList->GetClientEntityFromHandle(localplayer->m_hActiveWeapon());
+
+		if (!lpWeapon)
+			return;
+
+		if (lpWeapon->m_flNextPrimaryAttack() > I::Globals->curtime)
+			return;
+
+		CSWeaponInfo* weapondata = lpWeapon->GetCSWeaponData();
+
+		if (lpWeapon->m_iClip1() < 1 || weapondata->basic_weapon_type == BASICWEAPONTYPE_BOMB_NADES || weapondata->basic_weapon_type == BASICWEAPONTYPE_KNIFE)
+			return;
+
+		trace_t trace;
+		CTraceFilter filter;
+		filter.pSkip = localplayer;
+
+		// https://stackoverflow.com/questions/30619901/calculate-3d-point-coordinates-using-horizontal-and-vertical-angles-and-slope-di?rq=1
+		dst.x = weapondata->range *  cosf(DEG2RAD(cmd->viewangles.pitch)) * cosf(DEG2RAD(cmd->viewangles.yaw));
+		dst.y = weapondata->range *  cosf(DEG2RAD(cmd->viewangles.pitch)) * sinf(DEG2RAD(cmd->viewangles.yaw));
+		dst.z = weapondata->range * -sinf(DEG2RAD(cmd->viewangles.pitch));
+
+		
+
+		dst += localplayer->GetEyePosition();
+
+		U::TraceLine(localplayer->GetEyePosition(), dst, MASK_SHOT, &filter, &trace);
+
+		if (!trace.m_pEnt || !trace.m_pEnt->IsPlayer() || trace.m_pEnt->IsDormant() || trace.m_pEnt->m_iTeamNum() == localplayer->m_iTeamNum())
+			return;
+
+		if (hitchance != 0 && !C::Aimbot.Hitchance(cmd, localplayer, lpWeapon, localplayer->m_angEyeAngles(), trace.m_pEnt, hitchance))
+			return;
+
+		if (mindamage != 0)
+		{
+			float dmg = C::Autowall.GetDamage(localplayer, lpWeapon, trace.m_pEnt, localplayer->GetEyePosition(), dst);
+
+			if (dmg < mindamage && dmg < trace.m_pEnt->m_iHealth())
+				return;
+		}
+
+		float speed = localplayer->m_vecVelocity().Length();
+		float max_speed = localplayer->m_bIsScoped() ? weapondata->max_speed_alt : weapondata->max_speed;
+
+		if (speed > (max_speed / 3.3f))
+		{
+			QAngle angle;
+			M::VectorAngles(localplayer->m_vecVelocity(), &angle);
+			
+			angle.yaw = cmd->viewangles.yaw - angle.yaw;
+
+			Vector forward;
+			M::AngleVectors(angle, &forward);
+
+			float ratio = 450.f / max(fabs(forward.x), fabs(forward.y));
+
+			forward *= ratio;
+
+			Clamp(forward.x, -450.f, 450.f);
+			Clamp(forward.y, -450.f, 450.f);
+
+			cmd->forwardmove = forward.x;
+			cmd->sidemove = forward.y;
+			cmd->upmove = 0.f;
+
+			return;
+		}
+
+		cmd->buttons |= IN_ATTACK;
+	}
+}
+
+void CLegitTriggerbot::EndScene()
+{
+	if (!C::LegitTriggerbot.Enabled)
+		return;
+
+	Vector2D screen;
+	if (R::WorldToScreen(dst, &screen))
+	{
+		R::FilledRect(screen.x, screen.y, 10, 10, D3DCOLOR_XRGB(255, 174, 201));
+	}
+}

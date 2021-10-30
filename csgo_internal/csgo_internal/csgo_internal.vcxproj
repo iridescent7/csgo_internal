@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BFD93737-8F53-46F1-8BFE-6812A5364973}</ProjectGuid>
+    <RootNamespace>csgo_internal</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+      <ShaderModel>2.0</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+      <ShaderModel>2.0</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="chocoladevkit\cstr.h" />
+    <ClInclude Include="chocoladevkit\hash.h" />
+    <ClInclude Include="Enhancement\AntiAim.h" />
+    <ClInclude Include="Enhancement\Glow.h" />
+    <ClInclude Include="Enhancement\LegitAA.h" />
+    <ClInclude Include="Enhancement\LegitAimbot.h" />
+    <ClInclude Include="Enhancement\LegitBacktrack.h" />
+    <ClInclude Include="Enhancement\LegitMisc.h" />
+    <ClInclude Include="Enhancement\LegitTriggerbot.h" />
+    <ClInclude Include="Enhancement\VisualExtras.h" />
+    <ClInclude Include="Enhancement\ModelChams.h" />
+    <ClInclude Include="Enhancement\NightMode.h" />
+    <ClInclude Include="GUI\Controls\Space.h" />
+    <ClInclude Include="GUI\Controls\ItemSelector.h" />
+    <ClInclude Include="SDK\classid.h" />
+    <ClInclude Include="SDK\Interfaces\IAppSystem.h" />
+    <ClInclude Include="SDK\Interfaces\IEngineTrace.h" />
+    <ClInclude Include="Utils\WinAPI.h" />
+    <ClInclude Include="GUI\Controls\SliderFloat.h" />
+    <ClInclude Include="Utils\AutoWall.h" />
+    <ClInclude Include="Enhancement\Miscellaneous.h" />
+    <ClInclude Include="Utils\Math.h" />
+    <ClInclude Include="Utils\Util.h" />
+    <ClInclude Include="Utils\PredictionSystem.h" />
+    <ClInclude Include="Enhancement\Aimbot.h" />
+    <ClInclude Include="Enhancement\PlayerEsp.h" />
+    <ClInclude Include="GUI\Colors.h" />
+    <ClInclude Include="GUI\Controls\Checkbox.h" />
+    <ClInclude Include="GUI\Controls\Control.h" />
+    <ClInclude Include="GUI\Controls\Button.h" />
+    <ClInclude Include="GUI\Controls.h" />
+    <ClInclude Include="GUI\Controls\ComboBox.h" />
+    <ClInclude Include="GUI\Controls\Tab.h" />
+    <ClInclude Include="GUI\Controls\Keybind.h" />
+    <ClInclude Include="GUI\Controls\Slider.h" />
+    <ClInclude Include="GUI\Controls\GroupBox.h" />
+    <ClInclude Include="GUI\Controls\Window.h" />
+    <ClInclude Include="GUI\Menu.h" />
+    <ClInclude Include="Utils\Render.h" />
+    <ClInclude Include="Menu\texture.h" />
+    <ClInclude Include="SDK\checksum_md5.h" />
+    <ClInclude Include="SDK\VMatrix.h" />
+    <ClInclude Include="detours.h" />
+    <ClInclude Include="SDK\Color.h" />
+    <ClInclude Include="SDK\CUtlVector.h" />
+    <ClInclude Include="SDK\csgo_enums.h" />
+    <ClInclude Include="SDK\Interfaces\getvfunc.h" />
+    <ClInclude Include="SDK\studio.h" />
+    <ClInclude Include="SDK\SDK.h" />
+    <ClInclude Include="SDK\modelchanger.h" />
+    <ClInclude Include="SDK\Interfaces\CCSPlayer.h" />
+    <ClInclude Include="SDK\Interfaces\CBaseCombatWeapon.h" />
+    <ClInclude Include="SDK\Interfaces\CClientEntityList.h" />
+    <ClInclude Include="SDK\Interfaces\CGlowObjectManager.h" />
+    <ClInclude Include="SDK\Interfaces\CInputSystem.h" />
+    <ClInclude Include="SDK\ConVar.h" />
+    <ClInclude Include="SDK\Interfaces\CPanel.h" />
+    <ClInclude Include="SDK\Interfaces\CPrediction.h" />
+    <ClInclude Include="SDK\Interfaces\CTrace.h" />
+    <ClInclude Include="SDK\Interfaces\GameEvents.h" />
+    <ClInclude Include="SDK\Interfaces\IClient.h" />
+    <ClInclude Include="SDK\Interfaces\IEngine.h" />
+    <ClInclude Include="SDK\Interfaces\IMaterial.h" />
+    <ClInclude Include="SDK\Interfaces\IMemAlloc.h" />
+    <ClInclude Include="SDK\Interfaces\INetChannelInfo.h" />
+    <ClInclude Include="SDK\Interfaces\ISurface.h" />
+    <ClInclude Include="SDK\Interfaces\IVDebugOverlay.h" />
+    <ClInclude Include="SDK\Interfaces\IViewRenderBeams.h" />
+    <ClInclude Include="SDK\ModelInfo.h" />
+    <ClInclude Include="SDK\Interfaces\ModelRender.h" />
+    <ClInclude Include="SDK\RecvData.h" />
+    <ClInclude Include="SDK\Interfaces\RenderView.h" />
+    <ClInclude Include="Hooks\Hooks.h" />
+    <ClInclude Include="Interfaces.h" />
+    <ClInclude Include="Utils\Netvars.h" />
+    <ClInclude Include="Offsets.h" />
+    <ClInclude Include="SDK\QAngle.h" />
+    <ClInclude Include="SDK\Quaternion.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="SDK\Vector2D.h" />
+    <ClInclude Include="SDK\Vector.h" />
+    <ClInclude Include="Utils\xorstr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chocoladevkit\cstr.cpp" />
+    <ClCompile Include="Enhancement\AntiAim.cpp" />
+    <ClCompile Include="Enhancement\LegitAA.cpp" />
+    <ClCompile Include="Enhancement\LegitMisc.cpp" />
+    <ClCompile Include="Enhancement\NightMode.cpp" />
+    <ClCompile Include="Enhancement\ModelChams.cpp" />
+    <ClCompile Include="Enhancement\Glow.cpp" />
+    <ClCompile Include="Enhancement\LegitBacktrack.cpp" />
+    <ClCompile Include="Enhancement\LegitAimbot.cpp" />
+    <ClCompile Include="Enhancement\LegitTriggerbot.cpp" />
+    <ClCompile Include="Enhancement\VisualExtras.cpp" />
+    <ClCompile Include="GUI\Controls\SliderFloat.cpp" />
+    <ClCompile Include="GUI\Controls\ItemSelector.cpp" />
+    <ClCompile Include="Hooks\ClientCMD.cpp" />
+    <ClCompile Include="SDK\ConVar.cpp" />
+    <ClCompile Include="Utils\WinAPI.cpp" />
+    <ClCompile Include="Utils\AutoWall.cpp" />
+    <ClCompile Include="Enhancement\Miscellaneous.cpp" />
+    <ClCompile Include="Utils\PredictionSystem.cpp" />
+    <ClCompile Include="Enhancement\Aimbot.cpp" />
+    <ClCompile Include="Enhancement\PlayerEsp.cpp" />
+    <ClCompile Include="GUI\Controls\Checkbox.cpp" />
+    <ClCompile Include="GUI\Controls\GroupBox.cpp" />
+    <ClCompile Include="GUI\Controls\Slider.cpp" />
+    <ClCompile Include="GUI\Controls\Keybind.cpp" />
+    <ClCompile Include="GUI\Controls\Button.cpp" />
+    <ClCompile Include="GUI\Controls\ComboBox.cpp" />
+    <ClCompile Include="GUI\Controls\Window.cpp" />
+    <ClCompile Include="GUI\Controls\Tab.cpp" />
+    <ClCompile Include="GUI\Menu.cpp" />
+    <ClCompile Include="Utils\Render.cpp" />
+    <ClCompile Include="SDK\checksum_md5.cpp" />
+    <ClCompile Include="Hooks\CreateMove.cpp" />
+    <ClCompile Include="Hooks\DrawModelExecute.cpp" />
+    <ClCompile Include="Hooks\EndScene.cpp" />
+    <ClCompile Include="Hooks\FireGameEvent.cpp" />
+    <ClCompile Include="Hooks\FrameStageNotify.cpp" />
+    <ClCompile Include="Hooks\OverrideView.cpp" />
+    <ClCompile Include="Hooks\SceneEnd.cpp" />
+    <ClCompile Include="Hooks\WndProc.cpp" />
+    <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="Hooks\Hooks.cpp" />
+    <ClCompile Include="Interfaces.cpp" />
+    <ClCompile Include="Utils\Netvars.cpp" />
+    <ClCompile Include="Offsets.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Utils\Math.cpp" />
+    <ClCompile Include="Utils\Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="detours.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="detours.pdb" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

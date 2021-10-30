@@ -1,0 +1,9 @@
+.vs/
+csgo_internal/Debug
+csgo_internal/Release
+Release/csgo_netvar_dump.txt
+Debug/
+*.obj
+*.ilk
+*.pdb
+*.zip
